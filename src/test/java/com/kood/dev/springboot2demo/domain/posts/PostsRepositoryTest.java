@@ -1,4 +1,4 @@
-package com.kood.dev.springboot2demo.domain;
+package com.kood.dev.springboot2demo.domain.posts;
 
 import com.kood.dev.springboot2demo.domain.posts.Posts;
 import com.kood.dev.springboot2demo.domain.posts.PostsRepository;
@@ -38,6 +38,7 @@ public class PostsRepositoryTest {
 
         //then - 테스트 결과 검증
         Posts posts = postsList.get(0);
+
         assertEquals("Test title", posts.getTitle());
         assertEquals("Test content", posts.getContent());
     }
@@ -57,6 +58,7 @@ public class PostsRepositoryTest {
 
         //then
         Posts posts = postsList.get(0);
+
         assertTrue(posts.getCreatedDate().isAfter(now));
         assertTrue(posts.getModifiedDate().isAfter(now));
     }
