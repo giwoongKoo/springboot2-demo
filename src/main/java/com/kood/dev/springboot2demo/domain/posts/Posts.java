@@ -1,5 +1,6 @@
 package com.kood.dev.springboot2demo.domain.posts;
 
+import com.kood.dev.springboot2demo.domain.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

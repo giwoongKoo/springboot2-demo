@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -28,15 +31,33 @@ public class PostsRepositoryTest {
                 .title("Test title")
                 .content("Test content")
                 .author("Test author")
-                .build()
-        );
+                .build());
 
         //when - 테스트 하고자 하는 행위
         List<Posts> postsList = postsRepository.findAll();
 
         //then - 테스트 결과 검증
         Posts posts = postsList.get(0);
-        Assertions.assertEquals("Test title", posts.getTitle());
-        Assertions.assertEquals("Test content", posts.getContent());
+        assertEquals("Test title", posts.getTitle());
+        assertEquals("Test content", posts.getContent());
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                        .title("게시글 테스트")
+                        .content("본문 테스트")
+                        .author("등록자 테스트")
+                        .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
     }
 }
