@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: standalone
+    include: oauth
 
 ---
 spring:
