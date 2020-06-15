@@ -7,3 +7,7 @@ Content-Type: application/json
   "content": "Test Content",
   "author": "Test Author"
 }
+
+### Send GET request with posts.findById
+GET http://localhost:8080/api/v1/posts/1
+Accept: application/json
