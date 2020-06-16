@@ -1,5 +1,6 @@
 package com.kood.dev.springboot2demo.web;
 
+import com.kood.dev.springboot2demo.config.auth.LoginUser;
 import com.kood.dev.springboot2demo.config.auth.dto.SessionUser;
 import com.kood.dev.springboot2demo.service.PostsService;
 import com.kood.dev.springboot2demo.web.dto.PostsResponseDto;
@@ -18,10 +19,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(@LoginUser SessionUser loginUser, Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if (user != null) model.addAttribute("userName", user.getName());
+
+        if (loginUser != null) model.addAttribute("userName", loginUser.getName());
         return "index";
     }
 
