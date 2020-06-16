@@ -46,7 +46,7 @@ public class PostsRepositoryTest {
     @Test
     public void BaseTimeEntity_등록() {
         //given
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2020, 6, 16, 0, 0, 0);
         postsRepository.save(Posts.builder()
                         .title("게시글 테스트")
                         .content("본문 테스트")
